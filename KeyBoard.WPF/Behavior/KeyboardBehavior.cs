@@ -51,6 +51,10 @@ namespace KeyBoard.WPF.Behavior
             {
                 return;
             }
+            if (VisualTreeHelper.GetParent(this.popup) != null)
+            {
+                return;
+            }
             this.Panel.Children.Add(popup);
             Keyboard keyboard = new Keyboard();
             keyboard.ClosedEvent += Keyboard_ClosedEvent;

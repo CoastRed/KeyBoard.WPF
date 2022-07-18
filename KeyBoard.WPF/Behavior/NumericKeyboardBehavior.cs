@@ -46,8 +46,13 @@ namespace KeyBoard.WPF.Behavior
 
         private void AssociatedObject_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
+            
             this.Panel = this.GetPanel(this.AssociatedObject);
             if (this.Panel == null)
+            {
+                return;
+            }
+            if (VisualTreeHelper.GetParent(this.popup) != null)
             {
                 return;
             }
