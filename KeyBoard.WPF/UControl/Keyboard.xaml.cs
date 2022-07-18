@@ -89,6 +89,7 @@ namespace KeyBoard.WPF.UControl
         public Keyboard()
         {
             InitializeComponent();
+
         }
 
         private void Grid_Click(object sender, RoutedEventArgs e)
