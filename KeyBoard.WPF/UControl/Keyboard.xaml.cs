@@ -22,12 +22,6 @@ namespace KeyBoard.WPF.UControl
     /// </summary>
     public partial class Keyboard : UserControl
     {
-
-        [DllImport("User32.dll")]
-        public static extern void keybd_event(byte bVK, byte bScan, Int32 dwFlags, int dwExtraInfo);
-
-        public event EventHandler? ClosedEvent;
-
         private static Dictionary<string, byte> keycode = new Dictionary<string, byte>()
         {
             {"0", 48 },
@@ -86,10 +80,57 @@ namespace KeyBoard.WPF.UControl
             {"=", 187 },
             {"-", 189 }
         };
+
+        /// <summary>
+        /// 键盘输入
+        /// </summary>
+        /// <param name="bVK"></param>
+        /// <param name="bScan"></param>
+        /// <param name="dwFlags"></param>
+        /// <param name="dwExtraInfo"></param>
+        [DllImport("User32.dll")]
+        public static extern void keybd_event(byte bVK, byte bScan, Int32 dwFlags, int dwExtraInfo);
+
+        /// <summary>
+        /// 获取键盘状态
+        /// </summary>
+        /// <param name="pbKeyState"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", EntryPoint = "GetKeyboardState")]
+        public static extern int GetKeyboardState(byte[] pbKeyState);
+
+        /// <summary>
+        /// CapsLock按键状态
+        /// </summary>
+        public bool CapsLock 
+        { 
+            get
+            {
+                byte[] bs = new byte[256];
+                GetKeyboardState(bs);
+                return (bs[0x14] == 1);
+            }
+        }
+
+
+        /// <summary>
+        /// 键盘关闭事件
+        /// </summary>
+        public event EventHandler? ClosedEvent;
+
+        
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public Keyboard()
         {
             InitializeComponent();
 
+            if (this.CapsLock)
+            {
+                this.tgCapsLock.IsChecked = true;
+            }
         }
 
         private void Grid_Click(object sender, RoutedEventArgs e)
@@ -111,8 +152,12 @@ namespace KeyBoard.WPF.UControl
                 this.ClosedEvent?.Invoke(this, new EventArgs());
                 return;
             }
+
+
             keybd_event(keycode[content], 0, 0, 0);
             keybd_event(keycode[content], 0, 2, 0);
+
+
         }
 
 

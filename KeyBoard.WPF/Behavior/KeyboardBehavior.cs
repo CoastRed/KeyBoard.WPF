@@ -12,8 +12,14 @@ using System.Windows.Media;
 
 namespace KeyBoard.WPF.Behavior
 {
+    /// <summary>
+    /// 全键盘
+    /// </summary>
     public class KeyboardBehavior : Behavior<Control>
     {
+        /// <summary>
+        /// 触发键盘的控件所在的容器
+        /// </summary>
         public Panel? Panel { get; set; }
 
         Popup popup = new Popup();
