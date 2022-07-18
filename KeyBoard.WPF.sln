@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyBoardDemo", "KeyBoardDemo\KeyBoardDemo.csproj", "{12EBC4FE-E04D-48EA-8279-22975C2373B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyBoard.WPF", "KeyBoard.WPF\KeyBoard.WPF.csproj", "{78C686C9-6898-453C-994C-5EE2024C7FDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12EBC4FE-E04D-48EA-8279-22975C2373B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12EBC4FE-E04D-48EA-8279-22975C2373B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12EBC4FE-E04D-48EA-8279-22975C2373B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12EBC4FE-E04D-48EA-8279-22975C2373B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78C686C9-6898-453C-994C-5EE2024C7FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78C686C9-6898-453C-994C-5EE2024C7FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78C686C9-6898-453C-994C-5EE2024C7FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78C686C9-6898-453C-994C-5EE2024C7FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E11B99BD-216B-4EE0-9BB0-598EBCFE896A}
+	EndGlobalSection
+EndGlobal

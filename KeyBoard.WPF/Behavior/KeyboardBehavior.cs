@@ -1,0 +1,94 @@
+﻿using KeyBoard.WPF.UControl;
+using Microsoft.Xaml.Behaviors;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Media;
+
+namespace KeyBoard.WPF.Behavior
+{
+    public class KeyboardBehavior : Behavior<Control>
+    {
+        public Panel? Panel { get; set; }
+
+        Popup popup = new Popup();
+
+        protected override void OnAttached()
+        {
+            this.AssociatedObject.GotFocus += AssociatedObject_GotFocus;
+            this.AssociatedObject.LostFocus += AssociatedObject_LostFocus;
+            base.OnAttached();
+        }
+
+        protected override void OnDetaching()
+        {
+            this.AssociatedObject.GotFocus -= AssociatedObject_GotFocus;
+            this.AssociatedObject.LostFocus -= AssociatedObject_LostFocus;
+            base.OnDetaching();
+        }
+
+        private void AssociatedObject_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.popup != null)
+            {
+                this.popup.IsOpen = false;
+            }
+            if (this.Panel != null)
+            {
+                this.Panel.Children.Remove(this.popup);
+            }
+        }
+
+        private void AssociatedObject_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.Panel = this.GetPanel(this.AssociatedObject);
+            if (this.Panel == null)
+            {
+                return;
+            }
+            this.Panel.Children.Add(popup);
+            Keyboard keyboard = new Keyboard();
+            keyboard.ClosedEvent += Keyboard_ClosedEvent;
+            popup.Child = keyboard;
+            popup.IsOpen = true;
+            popup.StaysOpen = true;
+            popup.Placement = PlacementMode.Mouse;
+            
+        }
+
+        private void Keyboard_ClosedEvent(object? sender, EventArgs e)
+        {
+            if (this.popup != null)
+            {
+                this.popup.IsOpen = false;
+            }
+            if (this.Panel != null)
+            {
+                this.Panel.Children.Remove(this.popup);
+            }
+        }
+
+        private Panel? GetPanel(DependencyObject dependencyObject)
+        {
+            dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
+            if (dependencyObject == null)
+            {
+                return null;
+            }
+            Panel? pl = dependencyObject as Panel;
+            if (pl != null)
+            {
+                return pl;
+            }
+            else
+            {
+                return this.GetPanel(dependencyObject);
+            }
+        }
+    }
+}
