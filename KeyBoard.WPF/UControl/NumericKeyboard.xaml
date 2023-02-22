@@ -162,9 +162,14 @@
                 <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
                 <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
                 <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="3" Content="0" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="3" Content="←" Style="{StaticResource btnFunc}" />
-                <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="确认"  Style="{StaticResource btnFunc}" />
+                <UniformGrid Columns="4" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                    <Button Margin="2" Content="←" Style="{StaticResource btnFunc}" />
+                    <Button Margin="2"  Content="0" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2"  Content="." FontSize="35" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Content="确认"  Style="{StaticResource btnFunc}" />
+                </UniformGrid>
+                <!--<Button Margin="2" Grid.Column="0" Grid.Row="3" Content="←" Style="{StaticResource btnFunc}" />
+                <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="确认"  Style="{StaticResource btnFunc}" />-->
             </Grid>
         </Border>
     </Border>

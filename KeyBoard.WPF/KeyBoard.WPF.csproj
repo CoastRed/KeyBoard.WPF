@@ -6,22 +6,18 @@
     <UseWPF>true</UseWPF>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <Version>1.0.1</Version>
+	  <Version>1.0.3</Version>
 	  <Authors>CoastRed</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/CoastRed/KeyBoard.WPF</RepositoryUrl>
     <Description>一款用于触摸屏输入的屏幕软键盘</Description>
-    <PackageIcon>键盘.PNG</PackageIcon>
-    <PackageReleaseNotes>修复BUG</PackageReleaseNotes>
+    <PackageIcon></PackageIcon>
+    <PackageReleaseNotes>增加小键盘的小数点</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="C:\Users\XF\Desktop\键盘.PNG">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

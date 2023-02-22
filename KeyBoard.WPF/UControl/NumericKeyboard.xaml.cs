@@ -40,6 +40,7 @@ namespace KeyBoard.WPF.UControl
             {"8", 56 },
             {"9", 57 },
             {"←", 8 },
+            {".", 190 },
         };
 
         public NumericKeyboard()
