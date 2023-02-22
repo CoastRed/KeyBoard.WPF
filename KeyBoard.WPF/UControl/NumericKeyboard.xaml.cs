@@ -22,6 +22,19 @@ namespace KeyBoard.WPF.UControl
     public partial class NumericKeyboard : UserControl
     {
 
+
+        public Brush UCBackground
+        {
+            get { return (Brush)GetValue(UCBackgroundProperty); }
+            set { SetValue(UCBackgroundProperty, value); }
+        }
+
+        // 小键盘背景色
+        public static readonly DependencyProperty UCBackgroundProperty =
+            DependencyProperty.Register("UCBackground", typeof(Brush), typeof(NumericKeyboard), new PropertyMetadata(new SolidColorBrush(Colors.Green)));
+
+
+
         [DllImport("User32.dll")]
         public static extern void keybd_event(byte bVK, byte bScan, Int32 dwFlags, int dwExtraInfo);
 
@@ -29,18 +42,18 @@ namespace KeyBoard.WPF.UControl
 
         private static Dictionary<string, byte> keycode = new Dictionary<string, byte>()
         {
-            {"0", 48 },
-            {"1", 49 },
-            {"2", 50 },
-            {"3", 51 },
-            {"4", 52 },
-            {"5", 53 },
-            {"6", 54 },
-            {"7", 55 },
-            {"8", 56 },
-            {"9", 57 },
+            {"0", 96 },
+            {"1", 97 },
+            {"2", 98 },
+            {"3", 99 },
+            {"4", 100 },
+            {"5", 101 },
+            {"6", 102 },
+            {"7", 103 },
+            {"8", 104 },
+            {"9", 105 },
             {"←", 8 },
-            {".", 190 },
+            {".", 110 },
         };
 
         public NumericKeyboard()

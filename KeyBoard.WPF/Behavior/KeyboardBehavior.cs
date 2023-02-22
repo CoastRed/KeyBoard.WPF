@@ -24,6 +24,12 @@ namespace KeyBoard.WPF.Behavior
 
         Popup popup = new Popup();
 
+        public KeyboardBehavior()
+        {
+            this.popup.AllowsTransparency= true;
+            this.popup.AllowDrop = true;
+        }
+
         protected override void OnAttached()
         {
             this.AssociatedObject.GotFocus += AssociatedObject_GotFocus;

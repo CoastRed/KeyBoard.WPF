@@ -18,6 +18,20 @@ namespace KeyBoard.WPF.Behavior
 
         Popup popup = new Popup();
 
+        /// <summary>
+        /// 小键盘背景色
+        /// </summary>
+        public Brush? UCBackground { get; set; }
+
+        public NumericKeyboardBehavior(Brush ucBackground)
+        {
+            this.UCBackground= ucBackground;
+        }
+        public NumericKeyboardBehavior()
+        {
+
+        }
+
         protected override void OnAttached()
         {
             this.AssociatedObject.GotFocus += AssociatedObject_GotFocus;
@@ -58,6 +72,11 @@ namespace KeyBoard.WPF.Behavior
             }
             this.Panel.Children.Add(popup);
             NumericKeyboard numericKeyboard = new NumericKeyboard();
+            if (this.UCBackground != null)
+            {
+                numericKeyboard.UCBackground = this.UCBackground;
+                //numericKeyboard.bd.Background = this.UCBackground;
+            }
             numericKeyboard.ClosedEvent += NumericKeyboard_ClosedEvent;
             popup.Child = numericKeyboard;
             popup.IsOpen = true;

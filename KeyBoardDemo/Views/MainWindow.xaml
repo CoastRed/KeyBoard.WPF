@@ -5,7 +5,7 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525" >
+        Title="{Binding Title}" Height="500" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -22,7 +22,7 @@
 
         <TextBox Grid.Row="1" Text="数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:NumericKeyboardBehavior/>
+                <keyboard:NumericKeyboardBehavior UCBackground="Blue"/>
             </i:Interaction.Behaviors>
         </TextBox>
         <TextBox Grid.Row="2" Text="全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
