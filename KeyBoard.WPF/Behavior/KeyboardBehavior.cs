@@ -1,4 +1,5 @@
-﻿using KeyBoard.WPF.UControl;
+﻿using KeyBoard.WPF.Controls.Attach;
+using KeyBoard.WPF.UControl;
 using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace KeyBoard.WPF.Behavior
         public Panel? Panel { get; set; }
 
         Popup popup = new Popup();
+
+        /// <summary>
+        /// 小键盘背景色
+        /// </summary>
+        public Brush? UCBackground { get; set; }
 
         public KeyboardBehavior()
         {
@@ -69,6 +75,10 @@ namespace KeyBoard.WPF.Behavior
             }
             this.Panel.Children.Add(popup);
             Keyboard keyboard = new Keyboard();
+            if (this.UCBackground != null)
+            {
+                keyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
+            }
             keyboard.ClosedEvent += Keyboard_ClosedEvent;
             popup.Child = keyboard;
             popup.IsOpen = true;

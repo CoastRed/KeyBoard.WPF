@@ -1,4 +1,5 @@
-﻿using KeyBoard.WPF.UControl;
+﻿using KeyBoard.WPF.Controls.Attach;
+using KeyBoard.WPF.UControl;
 using Microsoft.Xaml.Behaviors;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace KeyBoard.WPF.Behavior
@@ -23,10 +25,11 @@ namespace KeyBoard.WPF.Behavior
         /// </summary>
         public Brush? UCBackground { get; set; }
 
-        public NumericKeyboardBehavior(Brush ucBackground)
-        {
-            this.UCBackground= ucBackground;
-        }
+        //public NumericKeyboardBehavior(Brush? ucBackground = null, Style? btnStyle = null)
+        //{
+        //    this.UCBackground = ucBackground;
+        //    this.BtnStyle = btnStyle;
+        //}
         public NumericKeyboardBehavior()
         {
 
@@ -74,8 +77,7 @@ namespace KeyBoard.WPF.Behavior
             NumericKeyboard numericKeyboard = new NumericKeyboard();
             if (this.UCBackground != null)
             {
-                numericKeyboard.UCBackground = this.UCBackground;
-                //numericKeyboard.bd.Background = this.UCBackground;
+                numericKeyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
             }
             numericKeyboard.ClosedEvent += NumericKeyboard_ClosedEvent;
             popup.Child = numericKeyboard;

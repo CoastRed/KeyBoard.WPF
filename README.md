@@ -48,6 +48,18 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 
 ![全键盘](Image/全键盘.gif)
 
+
+# 可选配置
+
+**设置键盘的底色**
+
+```xaml
+<i:Interaction.Behaviors>
+    <keyboard:KeyboardBehavior UCBackground="Red"/>
+</i:Interaction.Behaviors>
+```
+
+
 # 注意事项
 
 - 为了适应（TextBox、PasswordBox等）输入框，在创建行为时，继承的是`Behavior<Control>`，理论上是可以在任何继承自`Control`类的控件中使用，但除了输入框，放在其他的控件上是没有意义的
