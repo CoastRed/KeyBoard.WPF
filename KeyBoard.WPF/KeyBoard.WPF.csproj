@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/CoastRed/KeyBoard.WPF</RepositoryUrl>
     <Description>一款用于触摸屏输入的屏幕软键盘</Description>
     <PackageIcon></PackageIcon>
-    <PackageReleaseNotes>增加小键盘的小数点</PackageReleaseNotes>
+    <PackageReleaseNotes>增加键盘底色改变的功能</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
