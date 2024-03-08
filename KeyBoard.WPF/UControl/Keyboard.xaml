@@ -70,7 +70,7 @@
 
     </UserControl.Resources>
     <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}">
-        <Border CornerRadius="5" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl},Path=UCBackground}">
+        <Border CornerRadius="5">
             <Grid Margin="2" ButtonBase.Click="Grid_Click">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>

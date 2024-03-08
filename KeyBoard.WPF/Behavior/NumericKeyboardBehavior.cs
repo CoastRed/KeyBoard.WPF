@@ -84,7 +84,8 @@ namespace KeyBoard.WPF.Behavior
             popup.IsOpen = true;
             popup.StaysOpen = true;
             popup.Placement = PlacementMode.Mouse;
-            
+
+
         }
 
         private void NumericKeyboard_ClosedEvent(object? sender, EventArgs e)
@@ -97,6 +98,7 @@ namespace KeyBoard.WPF.Behavior
             {
                 this.Panel.Children.Remove(this.popup);
             }
+            //bool? re = this.Panel?.Focus();
         }
 
         private Panel? GetPanel(DependencyObject dependencyObject)
