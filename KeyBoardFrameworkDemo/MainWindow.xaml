@@ -1,0 +1,49 @@
+﻿<Window x:Class="KeyBoardFrameworkDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyBoardFrameworkDemo"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" Text="Popup" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+            <i:Interaction.Behaviors>
+                <keyboard:NumericKeyboardBehavior/>
+            </i:Interaction.Behaviors>
+            <!--<i:Interaction.Behaviors>
+                <i:MouseDragElementBehavior />
+            </i:Interaction.Behaviors>-->
+        </TextBox>
+
+        <TextBox Grid.Row="1" Text="数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+            <i:Interaction.Behaviors>
+                <keyboard:NumericKeyboardBehavior UCBackground="Blue"/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <TextBox Grid.Row="2" Text="全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+            <i:Interaction.Behaviors>
+                <keyboard:KeyboardBehavior/>
+            </i:Interaction.Behaviors>
+        </TextBox>
+        <PasswordBox Grid.Row="3" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+            <i:Interaction.Behaviors>
+                <keyboard:KeyboardBehavior UCBackground="Red"/>
+            </i:Interaction.Behaviors>
+        </PasswordBox>
+        <Button Grid.Row="4" Content="按钮"  FontSize="25" VerticalAlignment="Center" Margin="20 0">
+            <i:Interaction.Behaviors>
+                <keyboard:KeyboardBehavior/>
+            </i:Interaction.Behaviors>
+        </Button>
+    </Grid>
+</Window>
