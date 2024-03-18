@@ -27,5 +27,21 @@ namespace KeyBoard.WPF.Controls.Attach
             DependencyProperty.RegisterAttached("UCBackground", typeof(Brush), typeof(UCAttach), new PropertyMetadata(Brushes.Orange));
 
 
+        public static double GetUCFontSize(DependencyObject obj)
+        {
+            return (double)obj.GetValue(UCFontSizeProperty);
+        }
+
+        public static void SetUCFontSize(DependencyObject obj, double value)
+        {
+            obj.SetValue(UCFontSizeProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for UCFontSize.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UCFontSizeProperty =
+            DependencyProperty.RegisterAttached("UCFontSize", typeof(double), typeof(UCAttach), new PropertyMetadata(15.0));
+
+
+
     }
 }

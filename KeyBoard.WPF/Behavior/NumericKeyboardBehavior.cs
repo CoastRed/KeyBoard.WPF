@@ -25,6 +25,8 @@ namespace KeyBoard.WPF.Behavior
         /// </summary>
         public Brush? UCBackground { get; set; }
 
+        public double UCFontSize { get; set; } = 15;
+
         //public NumericKeyboardBehavior(Brush? ucBackground = null, Style? btnStyle = null)
         //{
         //    this.UCBackground = ucBackground;
@@ -79,6 +81,7 @@ namespace KeyBoard.WPF.Behavior
             {
                 numericKeyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
             }
+            numericKeyboard.SetValue(UCAttach.UCFontSizeProperty, this.UCFontSize);
             numericKeyboard.ClosedEvent += NumericKeyboard_ClosedEvent;
             popup.Child = numericKeyboard;
             popup.IsOpen = true;

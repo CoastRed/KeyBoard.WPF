@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
              mc:Ignorable="d" Height="220" Width="690" Focusable="False"
-             
              d:DesignHeight="220" d:DesignWidth="690">
     <UserControl.Resources>
         <SolidColorBrush x:Key="background" Color="#E8E8E8"></SolidColorBrush>
@@ -18,6 +17,7 @@
             <Setter Property="ButtonBase.Margin" Value="3 1"/>
             <Setter Property="ButtonBase.Background" Value="{StaticResource keybackground}"/>
             <Setter Property="ButtonBase.Focusable" Value="False" />
+            <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCFontSize)}" />
         </Style>
         <Style x:Key="keyrow" TargetType="{x:Type StackPanel}">
             <Setter Property="Orientation" Value="Horizontal"></Setter>
@@ -69,7 +69,8 @@
         </Style>
 
     </UserControl.Resources>
-    <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}">
+    <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}"
+            >
         <Border CornerRadius="5">
             <Grid Margin="2" ButtonBase.Click="Grid_Click">
                 <Grid.RowDefinitions>

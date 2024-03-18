@@ -30,6 +30,8 @@ namespace KeyBoard.WPF.Behavior
         /// </summary>
         public Brush? UCBackground { get; set; }
 
+        public double UCFontSize { get; set; } = 15;
+
         public KeyboardBehavior()
         {
             this.popup.AllowsTransparency= true;
@@ -79,6 +81,7 @@ namespace KeyBoard.WPF.Behavior
             {
                 keyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
             }
+            keyboard.SetValue(UCAttach.UCFontSizeProperty, this.UCFontSize);
             keyboard.ClosedEvent += Keyboard_ClosedEvent;
             popup.Child = keyboard;
             popup.IsOpen = true;

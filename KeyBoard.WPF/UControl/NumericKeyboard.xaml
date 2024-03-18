@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
              mc:Ignorable="d" Width="300" Height="250" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Transparent">
+             d:DesignHeight="250" d:DesignWidth="300" Background="Transparent">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,6 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="Button">
                 <Setter Property="Focusable" Value="False" />
+                <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCFontSize)}" />
             </Style>
             <Style x:Key="btnNum" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                 <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -20,7 +21,7 @@
                 <!--<Setter Property="Height" Value="64" />
             <Setter Property="Width" Value="104" />-->
                 <!--<Setter Property="Padding" Value="10"/>-->
-                <Setter Property="FontSize" Value="100"/>
+                <!--<Setter Property="FontSize" Value="100"/>-->
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -34,7 +35,7 @@
                                         <GradientStop Color="WhiteSmoke" Offset="1"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="#FF565656"  TextElement.FontSize="24" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="#FF565656"  TextElement.FontSize="{TemplateBinding FontSize}" />
                                 <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="21.333" Foreground="#FF565656"/>-->
                             </Border>
                             <ControlTemplate.Triggers>
@@ -72,7 +73,7 @@
                                         <GradientStop Color="#FFF77202"/>
                                     </LinearGradientBrush>
                                 </Border.Background>
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="White" TextElement.FontSize="24"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="White" TextElement.FontSize="{TemplateBinding FontSize}"/>
                                 <!--<TextBlock TextWrapping="Wrap" Text="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="21.333"/>-->
                             </Border>
                             <ControlTemplate.Triggers>
