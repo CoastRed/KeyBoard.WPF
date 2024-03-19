@@ -7,14 +7,14 @@
     <UseWPF>true</UseWPF>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	  <Version>2.0.1</Version>
+	  <Version>2.0.2</Version>
 	  <Authors>CoastRed</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/CoastRed/KeyBoard.WPF</RepositoryUrl>
     <Description>一款用于触摸屏输入的屏幕软键盘</Description>
     <PackageIcon></PackageIcon>
-    <PackageReleaseNotes>增加UCFontSize属性，控制键盘的字体大小</PackageReleaseNotes>
+    <PackageReleaseNotes>数字键盘的确认键改为英文，按下颜色优化</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

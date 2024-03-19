@@ -82,7 +82,7 @@
                                         <Setter.Value>
                                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                 <GradientStop Color="Gray" Offset="1"/>
-                                                <GradientStop Color="#FF2D2D2D" Offset="0"/>
+                                                <GradientStop Color="#FFF77202" Offset="0"/>
                                             </LinearGradientBrush>
                                         </Setter.Value>
                                     </Setter>
@@ -161,7 +161,7 @@
                 <Button Margin="2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
                 <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="." FontSize="35" Style="{StaticResource btnNum}"/>
                 <Button Margin="2" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="←" Style="{StaticResource btnFunc}" />
-                <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="确认" Style="{StaticResource btnFunc}" />
+                <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter" Style="{StaticResource btnFunc}" />
                 <UniformGrid Visibility="Collapsed" Columns="4" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
                     <Button Margin="2" Content="←" Style="{StaticResource btnFunc}" />
                     <Button Margin="2"  Content="0" Style="{StaticResource btnNum}"/>

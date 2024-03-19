@@ -60,7 +60,7 @@ namespace KeyBoard.WPF.UControl
             {
                 return;
             }
-            if (content == "确认")
+            if (content == "确认" || content == "Enter")
             {
                 this.ClosedEvent?.Invoke(this, new EventArgs());
                 return;
