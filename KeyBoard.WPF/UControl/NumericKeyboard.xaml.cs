@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -69,5 +70,46 @@ namespace KeyBoard.WPF.UControl
             keybd_event(keycode[content], 0, 2, 0);
         }
 
+        private bool isDragging = false;
+        private Point clickPosition;
+
+        private void DragPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = true;
+            clickPosition = e.GetPosition(DragPanel);
+            DragPanel.CaptureMouse();
+        }
+
+        private void DragPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                var popup = GetParentPopup();
+                if (popup == null)
+                    return;
+                var currentPosition = e.GetPosition(null);
+                double offsetX = currentPosition.X - clickPosition.X;
+                double offsetY = currentPosition.Y - clickPosition.Y;
+
+                popup.HorizontalOffset += offsetX;
+                popup.VerticalOffset += offsetY;
+            }
+        }
+
+        private void DragPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+            DragPanel.ReleaseMouseCapture();
+        }
+
+        private Popup? GetParentPopup()
+        {
+            DependencyObject parent = this;
+            while (parent != null && !(parent is Popup))
+            {
+                parent = LogicalTreeHelper.GetParent(parent);
+            }
+            return parent as Popup;
+        }
     }
 }

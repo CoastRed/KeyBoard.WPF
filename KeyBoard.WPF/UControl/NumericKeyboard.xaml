@@ -136,40 +136,56 @@
     </UserControl.Resources>
     <Border Background="White" BorderThickness="0">
         <Border x:Name="bd" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}" CornerRadius="5" BorderThickness="0">
-            <Grid Margin="10" ButtonBase.Click="Grid_Click" Focusable="False">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button Margin="2" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="1" Content="4" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="1" Content="5" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="1" Content="6" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="." FontSize="35" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="←" Style="{StaticResource btnFunc}" />
-                <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter" Style="{StaticResource btnFunc}" />
-                <UniformGrid Visibility="Collapsed" Columns="4" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
-                    <Button Margin="2" Content="←" Style="{StaticResource btnFunc}" />
-                    <Button Margin="2"  Content="0" Style="{StaticResource btnNum}"/>
-                    <Button Margin="2"  Content="." FontSize="35" Style="{StaticResource btnNum}"/>
-                    <Button Margin="2" Content="确认"  Style="{StaticResource btnFunc}" />
-                </UniformGrid>
-                <!--<Button Margin="2" Grid.Column="0" Grid.Row="3" Content="←" Style="{StaticResource btnFunc}" />
+
+                <StackPanel
+                    x:Name="DragPanel"
+                    Grid.Row="0"
+                    Height="5"
+                    HorizontalAlignment="Stretch"
+                    Background="LightGray"
+                    MouseLeftButtonDown="DragPanel_MouseLeftButtonDown"
+                    MouseLeftButtonUp="DragPanel_MouseLeftButtonUp"
+                    MouseMove="DragPanel_MouseMove"/>
+                <Grid Grid.Row="1" Margin="10" ButtonBase.Click="Grid_Click" Focusable="False">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="1" Content="4" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="1" Content="5" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="1" Content="6" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="." FontSize="35" Style="{StaticResource btnNum}"/>
+                    <Button Margin="2" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="←" Style="{StaticResource btnFunc}" />
+                    <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter" Style="{StaticResource btnFunc}" />
+                    <UniformGrid Visibility="Collapsed" Columns="4" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+                        <Button Margin="2" Content="←" Style="{StaticResource btnFunc}" />
+                        <Button Margin="2"  Content="0" Style="{StaticResource btnNum}"/>
+                        <Button Margin="2"  Content="." FontSize="35" Style="{StaticResource btnNum}"/>
+                        <Button Margin="2" Content="确认"  Style="{StaticResource btnFunc}" />
+                    </UniformGrid>
+                    <!--<Button Margin="2" Grid.Column="0" Grid.Row="3" Content="←" Style="{StaticResource btnFunc}" />
                 <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="确认"  Style="{StaticResource btnFunc}" />-->
+                </Grid>
             </Grid>
         </Border>
     </Border>

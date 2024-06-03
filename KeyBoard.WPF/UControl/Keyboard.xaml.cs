@@ -160,6 +160,46 @@ namespace KeyBoard.WPF.UControl
 
         }
 
+        private bool isDragging = false;
+        private Point clickPosition;
 
+        private void DragPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = true;
+            clickPosition = e.GetPosition(DragPanel);
+            DragPanel.CaptureMouse();
+        }
+
+        private void DragPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                var popup = GetParentPopup();
+                if (popup == null)
+                    return;
+                var currentPosition = e.GetPosition(null);
+                double offsetX = currentPosition.X - clickPosition.X;
+                double offsetY = currentPosition.Y - clickPosition.Y;
+
+                popup.HorizontalOffset += offsetX;
+                popup.VerticalOffset += offsetY;
+            }
+        }
+
+        private void DragPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+            DragPanel.ReleaseMouseCapture();
+        }
+
+        private Popup? GetParentPopup()
+        {
+            DependencyObject parent = this;
+            while (parent != null && !(parent is Popup))
+            {
+                parent = LogicalTreeHelper.GetParent(parent);
+            }
+            return parent as Popup;
+        }
     }
 }

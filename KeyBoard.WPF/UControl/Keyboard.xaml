@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
-             mc:Ignorable="d" Height="220" Width="690" Focusable="False"
-             d:DesignHeight="220" d:DesignWidth="690">
+             mc:Ignorable="d" Height="270" Width="690" Focusable="False"
+             d:DesignHeight="270" d:DesignWidth="690">
     <UserControl.Resources>
         <SolidColorBrush x:Key="background" Color="#E8E8E8"></SolidColorBrush>
         <SolidColorBrush x:Key="keybackground" Color="#FEFEFE"></SolidColorBrush>
@@ -72,86 +72,104 @@
     <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}"
             >
         <Border CornerRadius="5">
-            <Grid Margin="2" ButtonBase.Click="Grid_Click">
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <!--row1-->
-                <StackPanel Grid.Row="0" Style="{StaticResource keyrow}">
-                    <Button  Content="`"></Button>
-                    <Button  Content="1" HorizontalContentAlignment="Left"></Button>
-                    <Button  Content="2"></Button>
-                    <Button  Content="3" ></Button>
-                    <Button  Content="4"></Button>
-                    <Button  Content="5"></Button>
-                    <Button  Content="6"></Button>
-                    <Button  Content="7"></Button>
-                    <Button  Content="8"></Button>
-                    <Button  Content="9"></Button>
-                    <Button  Content="0"></Button>
-                    <Button  Content="-"></Button>
-                    <Button  Content="="></Button>
-                    <Button  Width="80" Content="Backspace"/>
-                </StackPanel>
-                <!--row2-->
-                <StackPanel Grid.Row="1" Style="{StaticResource keyrow}">
-                    <Button  Width="80" Content="Tab"></Button>
-                    <Button  Content="Q"></Button>
-                    <Button  Content="W"></Button>
-                    <Button  Content="E"></Button>
-                    <Button  Content="R"></Button>
-                    <Button  Content="T"></Button>
-                    <Button  Content="Y"></Button>
-                    <Button  Content="U"></Button>
-                    <Button  Content="I"></Button>
-                    <Button  Content="O"></Button>
-                    <Button  Content="P"></Button>
-                    <Button  Content="["></Button>
-                    <Button  Content="]"></Button>
-                    <Button  Content="\"></Button>
-                </StackPanel>
-                <!--row3-->
-                <StackPanel Grid.Row="2" Style="{StaticResource keyrow}">
-                    <ToggleButton x:Name="tgCapsLock" Width="90" Content="CapsLock"/>
-                    <Button  Content="A"></Button>
-                    <Button  Content="S"></Button>
-                    <Button  Content="D"></Button>
-                    <Button  Content="F"></Button>
-                    <Button  Content="G"></Button>
-                    <Button  Content="H"></Button>
-                    <Button  Content="J"></Button>
-                    <Button  Content="K"></Button>
-                    <Button  Content="L"></Button>
-                    <Button  Content=";"></Button>
-                    <Button  Content="'"></Button>
-                </StackPanel>
-                <Button Grid.Row="2" Grid.RowSpan="3" Height="125" HorizontalAlignment="Right"  
+
+                <StackPanel
+                    x:Name="DragPanel"
+                    Grid.Row="0"
+                    Height="5"
+                    HorizontalAlignment="Stretch"
+                    Background="LightGray"
+                    MouseLeftButtonDown="DragPanel_MouseLeftButtonDown"
+                    MouseLeftButtonUp="DragPanel_MouseLeftButtonUp"
+                    MouseMove="DragPanel_MouseMove"
+                    Style="{StaticResource keyrow}" />
+
+                <Grid Grid.Row="1" Margin="2" ButtonBase.Click="Grid_Click">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!--row1-->
+                    <StackPanel Grid.Row="0" Style="{StaticResource keyrow}">
+                        <Button  Content="`"></Button>
+                        <Button  Content="1" HorizontalContentAlignment="Left"></Button>
+                        <Button  Content="2"></Button>
+                        <Button  Content="3" ></Button>
+                        <Button  Content="4"></Button>
+                        <Button  Content="5"></Button>
+                        <Button  Content="6"></Button>
+                        <Button  Content="7"></Button>
+                        <Button  Content="8"></Button>
+                        <Button  Content="9"></Button>
+                        <Button  Content="0"></Button>
+                        <Button  Content="-"></Button>
+                        <Button  Content="="></Button>
+                        <Button  Width="80" Content="Backspace"/>
+                    </StackPanel>
+                    <!--row2-->
+                    <StackPanel Grid.Row="1" Style="{StaticResource keyrow}">
+                        <Button  Width="80" Content="Tab"></Button>
+                        <Button  Content="Q"></Button>
+                        <Button  Content="W"></Button>
+                        <Button  Content="E"></Button>
+                        <Button  Content="R"></Button>
+                        <Button  Content="T"></Button>
+                        <Button  Content="Y"></Button>
+                        <Button  Content="U"></Button>
+                        <Button  Content="I"></Button>
+                        <Button  Content="O"></Button>
+                        <Button  Content="P"></Button>
+                        <Button  Content="["></Button>
+                        <Button  Content="]"></Button>
+                        <Button  Content="\"></Button>
+                    </StackPanel>
+                    <!--row3-->
+                    <StackPanel Grid.Row="2" Style="{StaticResource keyrow}">
+                        <ToggleButton x:Name="tgCapsLock" Width="90" Content="CapsLock"/>
+                        <Button  Content="A"></Button>
+                        <Button  Content="S"></Button>
+                        <Button  Content="D"></Button>
+                        <Button  Content="F"></Button>
+                        <Button  Content="G"></Button>
+                        <Button  Content="H"></Button>
+                        <Button  Content="J"></Button>
+                        <Button  Content="K"></Button>
+                        <Button  Content="L"></Button>
+                        <Button  Content=";"></Button>
+                        <Button  Content="'"></Button>
+                    </StackPanel>
+                    <Button Grid.Row="2" Grid.RowSpan="3" Height="125" HorizontalAlignment="Right"  
                     Width="80" Content="Enter" 
                     CommandParameter="{Binding Path=Content,RelativeSource={RelativeSource Self}}"></Button>
-                <!--row4-->
-                <StackPanel Grid.Row="3" Style="{StaticResource keyrow}">
-                    <Button Content="Shift"  Width="120"></Button>
-                    <Button  Content="Z"></Button>
-                    <Button  Content="X"></Button>
-                    <Button  Content="C"></Button>
-                    <Button  Content="V"></Button>
-                    <Button  Content="B"></Button>
-                    <Button  Content="N"></Button>
-                    <Button  Content="M"></Button>
-                    <Button  Content=","></Button>
-                    <Button  Content="."></Button>
-                    <Button  Content="/"></Button>
-                </StackPanel>
-                <!--row5-->
-                <StackPanel Grid.Row="4" Style="{StaticResource keyrow}">
-                    <ToggleButton >Ctrl</ToggleButton>
-                    <ToggleButton>Alt</ToggleButton>
-                    <Button Content="Space"  Width="488" ></Button>
-                </StackPanel>
+                    <!--row4-->
+                    <StackPanel Grid.Row="3" Style="{StaticResource keyrow}">
+                        <Button Content="Shift"  Width="120"></Button>
+                        <Button  Content="Z"></Button>
+                        <Button  Content="X"></Button>
+                        <Button  Content="C"></Button>
+                        <Button  Content="V"></Button>
+                        <Button  Content="B"></Button>
+                        <Button  Content="N"></Button>
+                        <Button  Content="M"></Button>
+                        <Button  Content=","></Button>
+                        <Button  Content="."></Button>
+                        <Button  Content="/"></Button>
+                    </StackPanel>
+                    <!--row5-->
+                    <StackPanel Grid.Row="4" Style="{StaticResource keyrow}">
+                        <ToggleButton >Ctrl</ToggleButton>
+                        <ToggleButton>Alt</ToggleButton>
+                        <Button Content="Space"  Width="488" ></Button>
+                    </StackPanel>
+                </Grid>
             </Grid>
         </Border>
     </Border>
