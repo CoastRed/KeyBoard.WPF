@@ -23,7 +23,9 @@ namespace KeyBoard.WPF.Behavior
         /// </summary>
         public Panel? Panel { get; set; }
 
-        Popup popup = new Popup();
+        public Popup? Popup { get; set; }
+
+        public Keyboard? Keyboard { get; set; }
 
         /// <summary>
         /// 小键盘背景色
@@ -34,8 +36,8 @@ namespace KeyBoard.WPF.Behavior
 
         public KeyboardBehavior()
         {
-            this.popup.AllowsTransparency= true;
-            this.popup.AllowDrop = true;
+            //this.popup.AllowsTransparency= true;
+            //this.popup.AllowDrop = true;
         }
 
         protected override void OnAttached()
@@ -54,69 +56,77 @@ namespace KeyBoard.WPF.Behavior
 
         private void AssociatedObject_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (this.popup != null)
+            if (this.Popup is not null)
             {
-                this.popup.IsOpen = false;
+                this.Popup.IsOpen = false;
             }
-            if (this.Panel != null)
-            {
-                this.Panel.Children.Remove(this.popup);
-            }
+            this.Panel?.Children.Remove(this.Popup);
         }
 
         private void AssociatedObject_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.Panel = this.GetPanel(this.AssociatedObject);
-            if (this.Panel == null)
+            //获取Panel
+            this.Panel ??= this.GetParent<Panel>(this.AssociatedObject);
+            if (this.Panel is null)
             {
                 return;
             }
-            if (VisualTreeHelper.GetParent(this.popup) != null)
+
+            if (this.Keyboard is null)
             {
-                return;
+                this.Keyboard = new Keyboard();
+                if (this.UCBackground != null)
+                {
+                    Keyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
+                }
+                Keyboard.SetValue(UCAttach.UCFontSizeProperty, this.UCFontSize);
+                Keyboard.ClosedEvent += Keyboard_ClosedEvent;
             }
-            this.Panel.Children.Add(popup);
-            Keyboard keyboard = new Keyboard();
-            if (this.UCBackground != null)
+
+            if (this.Popup is null)
             {
-                keyboard.SetValue(UCAttach.UCBackgroundProperty, this.UCBackground);
+                this.Popup = new Popup();
+                Popup.Child = Keyboard;
+                Popup.StaysOpen = true;
+                Popup.PlacementTarget = this.AssociatedObject;
+                Popup.Placement = PlacementMode.Bottom;
             }
-            keyboard.SetValue(UCAttach.UCFontSizeProperty, this.UCFontSize);
-            keyboard.ClosedEvent += Keyboard_ClosedEvent;
-            popup.Child = keyboard;
-            popup.IsOpen = true;
-            popup.StaysOpen = true;
-            popup.Placement = PlacementMode.Mouse;
-            
+
+            if (this.Panel.Children.Contains(this.Popup) is false)
+            {
+                this.Panel.Children.Add(Popup);
+            }
+            Popup.IsOpen = true;
+
         }
 
         private void Keyboard_ClosedEvent(object? sender, EventArgs e)
         {
-            if (this.popup != null)
+            if (this.Panel is not null)
             {
-                this.popup.IsOpen = false;
-            }
-            if (this.Panel != null)
-            {
-                this.Panel.Children.Remove(this.popup);
+                this.Panel.Focusable = true;
+                this.Panel.Focus();
             }
         }
 
-        private Panel? GetPanel(DependencyObject dependencyObject)
+        private T? GetParent<T>(DependencyObject dependencyObject) where T : DependencyObject
         {
             dependencyObject = VisualTreeHelper.GetParent(dependencyObject);
             if (dependencyObject == null)
             {
-                return null;
+                return default;
             }
-            Panel? pl = dependencyObject as Panel;
-            if (pl != null)
+            if (dependencyObject is Window)
             {
-                return pl;
+                return default;
+            }
+            if (dependencyObject is T)
+            {
+                return dependencyObject as T;
             }
             else
             {
-                return this.GetPanel(dependencyObject);
+                return this.GetParent<T>(dependencyObject);
             }
         }
     }
