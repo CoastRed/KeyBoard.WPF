@@ -3,157 +3,360 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
-             mc:Ignorable="d" Height="220" Width="690" Focusable="False"
-             d:DesignHeight="220" d:DesignWidth="690">
+             mc:Ignorable="d" Height="350" Width="800" Focusable="False" Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
+             d:DesignHeight="350" d:DesignWidth="800" Background="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(attach:UCAttach.UCBackground)}">
     <UserControl.Resources>
-        <SolidColorBrush x:Key="background" Color="#E8E8E8"></SolidColorBrush>
-        <SolidColorBrush x:Key="keybackground" Color="#FEFEFE"></SolidColorBrush>
-        <SolidColorBrush x:Key="press" Color="#FFCD43"></SolidColorBrush>
-        <Style x:Key="btnbase" TargetType="{x:Type Control}">
-            <Setter Property="ButtonBase.Width" Value="40" />
-            <Setter Property="ButtonBase.Height" Value="40"/>
-            <Setter Property="ButtonBase.Margin" Value="3 1"/>
-            <Setter Property="ButtonBase.Background" Value="{StaticResource keybackground}"/>
-            <Setter Property="ButtonBase.Focusable" Value="False" />
-            <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCFontSize)}" />
-        </Style>
-        <Style x:Key="keyrow" TargetType="{x:Type StackPanel}">
-            <Setter Property="Orientation" Value="Horizontal"></Setter>
-            <Setter Property="VerticalAlignment" Value="Center"></Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource btnbase}">
+        <LinearGradientBrush x:Key="KeyGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFFFFF" Offset="0"/>
+            <GradientStop Color="#F5F5F5" Offset="1"/>
+        </LinearGradientBrush>
+        <DropShadowEffect x:Key="KeyShadow" BlurRadius="3" ShadowDepth="2" Opacity="0.3" Color="#000000"/>
+        <Style TargetType="Button">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Background" Value="{StaticResource KeyGradient}"/>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCFontSize)}"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect" Value="{StaticResource KeyShadow}"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="PART_border" CornerRadius="4" Background="{TemplateBinding Background}">
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}"></TextBlock>
-                            </StackPanel>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6"
+                        Effect="{TemplateBinding Effect}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#E3F2FD" Offset="0"/>
+                                <GradientStop Color="#BBDEFB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#2196F3"/>
+                </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource press}"></Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#BBDEFB" Offset="0"/>
+                                <GradientStop Color="#90CAF9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#1976D2"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-
-        <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource btnbase}">
+        <Style x:Key="KeyButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ToggleButton}">
-                        <Border x:Name="PART_border" CornerRadius="4" Background="{TemplateBinding Background}">
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}"></TextBlock>
-                            </StackPanel>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="6"
+            Effect="{TemplateBinding Effect}">
+                            <Grid>
+                                <TextBlock x:Name="tb1" Text="{TemplateBinding Tag}" Margin="3 3 0 0" FontSize="15" Background="Transparent" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Top"/>
+                                <ContentPresenter x:Name="cp1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="PART_border" Property="Background" Value="{StaticResource press}"></Setter>
+                            <Trigger Property="Content" Value="`">
+                                <Setter TargetName="cp1" Property="VerticalAlignment" Value="Bottom"/>
+                            </Trigger>
+                            <Trigger Property="Tag" Value="_">
+                                <Setter TargetName="tb1" Property="VerticalAlignment" Value="Top"/>
+                                <Setter TargetName="tb1" Property="Margin" Value="3 -6 0 0"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+        <Style x:Key="FunctionKeyStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#E0E0E0" Offset="0"/>
+                        <GradientStop Color="#BDBDBD" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SpecialKeyStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFF9C4" Offset="0"/>
+                        <GradientStop Color="#FFF59D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- ToggleButton样式：用于Ctrl、Alt、Shift、CapsLock、Fn -->
+        <Style x:Key="ToggleKeyStyle" TargetType="ToggleButton">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FFF9C4" Offset="0"/>
+                        <GradientStop Color="#FFF59D" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="#BDBDBD"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCFontSize)}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Effect" Value="{StaticResource KeyShadow}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="6"
+                        Effect="{TemplateBinding Effect}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#E3F2FD" Offset="0"/>
+                                <GradientStop Color="#BBDEFB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#2196F3"/>
+                </Trigger>
                 <Trigger Property="IsPressed" Value="True">
-                    <Setter Property="Background" Value="{StaticResource press}"></Setter>
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#BBDEFB" Offset="0"/>
+                                <GradientStop Color="#90CAF9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#1976D2"/>
+                </Trigger>
+                <!-- 选中状态 -->
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#4CAF50" Offset="0"/>
+                                <GradientStop Color="#388E3C" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#2E7D32"/>
+                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-
     </UserControl.Resources>
-    <Border Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:UCAttach.UCBackground)}"
-            >
-        <Border CornerRadius="5">
-            <Grid Margin="2" ButtonBase.Click="Grid_Click">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <!--row1-->
-                <StackPanel Grid.Row="0" Style="{StaticResource keyrow}">
-                    <Button  Content="`"></Button>
-                    <Button  Content="1" HorizontalContentAlignment="Left"></Button>
-                    <Button  Content="2"></Button>
-                    <Button  Content="3" ></Button>
-                    <Button  Content="4"></Button>
-                    <Button  Content="5"></Button>
-                    <Button  Content="6"></Button>
-                    <Button  Content="7"></Button>
-                    <Button  Content="8"></Button>
-                    <Button  Content="9"></Button>
-                    <Button  Content="0"></Button>
-                    <Button  Content="-"></Button>
-                    <Button  Content="="></Button>
-                    <Button  Width="80" Content="Backspace"/>
+    <Grid Margin="10" ButtonBase.Click="Grid_Click">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
+        </Grid.RowDefinitions>
+        <UniformGrid Grid.Row="0" Rows="1" Columns="15" Margin="0 0 0 5">
+            <Button Content="Esc" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F1" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F2" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F3" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F4" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F5" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F6" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F7" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F8" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F9" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F10" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F11" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="F12" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="INS" Style="{StaticResource FunctionKeyStyle}"/>
+            <Button Content="Del" Style="{StaticResource FunctionKeyStyle}"/>
+        </UniformGrid>
+        <Grid Grid.Row="1" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" >
+                <StackPanel>
+                    <TextBlock Text="~" FontSize="11" Foreground="#666" Margin="0,-2,0,-4"/>
+                    <TextBlock Text="`" FontSize="16" FontWeight="Bold"/>
                 </StackPanel>
-                <!--row2-->
-                <StackPanel Grid.Row="1" Style="{StaticResource keyrow}">
-                    <Button  Width="80" Content="Tab"></Button>
-                    <Button  Content="Q"></Button>
-                    <Button  Content="W"></Button>
-                    <Button  Content="E"></Button>
-                    <Button  Content="R"></Button>
-                    <Button  Content="T"></Button>
-                    <Button  Content="Y"></Button>
-                    <Button  Content="U"></Button>
-                    <Button  Content="I"></Button>
-                    <Button  Content="O"></Button>
-                    <Button  Content="P"></Button>
-                    <Button  Content="["></Button>
-                    <Button  Content="]"></Button>
-                    <Button  Content="\"></Button>
-                </StackPanel>
-                <!--row3-->
-                <StackPanel Grid.Row="2" Style="{StaticResource keyrow}">
-                    <ToggleButton x:Name="tgCapsLock" Width="90" Content="CapsLock"/>
-                    <Button  Content="A"></Button>
-                    <Button  Content="S"></Button>
-                    <Button  Content="D"></Button>
-                    <Button  Content="F"></Button>
-                    <Button  Content="G"></Button>
-                    <Button  Content="H"></Button>
-                    <Button  Content="J"></Button>
-                    <Button  Content="K"></Button>
-                    <Button  Content="L"></Button>
-                    <Button  Content=";"></Button>
-                    <Button  Content="'"></Button>
-                </StackPanel>
-                <Button Grid.Row="2" Grid.RowSpan="3" Height="125" HorizontalAlignment="Right"  
-                    Width="80" Content="Enter" 
-                    CommandParameter="{Binding Path=Content,RelativeSource={RelativeSource Self}}"></Button>
-                <!--row4-->
-                <StackPanel Grid.Row="3" Style="{StaticResource keyrow}">
-                    <Button Content="Shift"  Width="120"></Button>
-                    <Button  Content="Z"></Button>
-                    <Button  Content="X"></Button>
-                    <Button  Content="C"></Button>
-                    <Button  Content="V"></Button>
-                    <Button  Content="B"></Button>
-                    <Button  Content="N"></Button>
-                    <Button  Content="M"></Button>
-                    <Button  Content=","></Button>
-                    <Button  Content="."></Button>
-                    <Button  Content="/"></Button>
-                </StackPanel>
-                <!--row5-->
-                <StackPanel Grid.Row="4" Style="{StaticResource keyrow}">
-                    <ToggleButton >Ctrl</ToggleButton>
-                    <ToggleButton>Alt</ToggleButton>
-                    <Button Content="Space"  Width="488" ></Button>
-                </StackPanel>
-            </Grid>
-        </Border>
-    </Border>
-
+            </Button>
+            <Button Grid.Column="0" Content="`" Tag="~" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="1" Content="1" Tag="!" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="2" Content="2" Tag="@" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="3" Content="3" Tag="#" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="4" Content="4" Tag="$" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="5" Content="5" Tag="%" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="6" Content="6" Tag="^" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="7" Content="7" Tag="&amp;" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="8" Content="8" Tag="*" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="9" Content="9" Tag="(" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="10" Content="0" Tag=")" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="11" Content="-" Tag="_" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="12" Content="=" Tag="+" Style="{StaticResource KeyButtonStyle}"/>
+            
+            <Button Grid.Column="13" Content="Backspace" Style="{StaticResource SpecialKeyStyle}"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Tab" Style="{StaticResource SpecialKeyStyle}"/>
+            <Button Grid.Column="1" Content="Q" />
+            <Button Grid.Column="2" Content="W" />
+            <Button Grid.Column="3" Content="E" />
+            <Button Grid.Column="4" Content="R" />
+            <Button Grid.Column="5" Content="T" />
+            <Button Grid.Column="6" Content="Y" />
+            <Button Grid.Column="7" Content="U" />
+            <Button Grid.Column="8" Content="I" />
+            <Button Grid.Column="9" Content="O" />
+            <Button Grid.Column="10" Content="P" />
+            <Button Grid.Column="11" Content="[" Tag="{}{" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="12" Content="]" Tag="{}}" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="13" Content="\" Tag="|" Style="{StaticResource KeyButtonStyle}"/>
+        </Grid>
+        <Grid Grid.Row="3" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.8*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.2*"/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton Grid.Column="0" x:Name="tgCapsLock" Content="CAPS" Style="{StaticResource ToggleKeyStyle}"/>
+            <Button Grid.Column="1" Content="A" />
+            <Button Grid.Column="2" Content="S" />
+            <Button Grid.Column="3" Content="D" />
+            <Button Grid.Column="4" Content="F" />
+            <Button Grid.Column="5" Content="G" />
+            <Button Grid.Column="6" Content="H" />
+            <Button Grid.Column="7" Content="J" />
+            <Button Grid.Column="8" Content="K" />
+            <Button Grid.Column="9" Content="L" />
+            <Button Grid.Column="10" Content=";" Tag=":" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="11" Content="'" Tag="&quot;" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="12" Content="Enter" Style="{StaticResource SpecialKeyStyle}"/>
+        </Grid>
+        <Grid Grid.Row="4" Margin="0 0 0 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2.7*"/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton x:Name="tgShift1" Grid.Column="0" Content="Shift" Style="{StaticResource ToggleKeyStyle}"/>
+            <Button Grid.Column="1" Content="Z" />
+            <Button Grid.Column="2" Content="X" />
+            <Button Grid.Column="3" Content="C" />
+            <Button Grid.Column="4" Content="V" />
+            <Button Grid.Column="5" Content="B" />
+            <Button Grid.Column="6" Content="N" />
+            <Button Grid.Column="7" Content="M" />
+            <Button Grid.Column="8" Content="," Tag="&lt;" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="9" Content="." Tag="&gt;" Style="{StaticResource KeyButtonStyle}"/>
+            <Button Grid.Column="10" Content="/" Tag="?" Style="{StaticResource KeyButtonStyle}"/>
+            <ToggleButton x:Name="tgShift2" Grid.Column="11" Content="Shift" IsChecked="{Binding ElementName=tgShift1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+        </Grid>
+        <Grid Grid.Row="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*"/>
+            </Grid.ColumnDefinitions>
+            <ToggleButton x:Name="tgCtrl1" Grid.Column="0" Content="Ctrl" Style="{StaticResource ToggleKeyStyle}"/>
+            <Button Grid.Column="1" Content="Win" Style="{StaticResource FunctionKeyStyle}"/>
+            <ToggleButton x:Name="tgAlt1" Grid.Column="2" Content="Alt" Style="{StaticResource ToggleKeyStyle}"/>
+            <Button Grid.Column="3" Content="Space"  FontSize="16"/>
+            <ToggleButton x:Name="tgAlt2" Grid.Column="4" Content="Alt" IsChecked="{Binding ElementName=tgAlt1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+            <ToggleButton Grid.Column="5" Content="Fn" Style="{StaticResource ToggleKeyStyle}"/>
+            <Button Grid.Column="6" Content="☰" Style="{StaticResource FunctionKeyStyle}"/>
+            <ToggleButton x:Name="tgCtrl2" Grid.Column="7" Content="Ctrl" IsChecked="{Binding ElementName=tgCtrl1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+        </Grid>
+    </Grid>
 </UserControl>

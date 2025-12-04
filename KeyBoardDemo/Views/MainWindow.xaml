@@ -27,7 +27,7 @@
         </TextBox>
         <TextBox Grid.Row="2" Text="全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:KeyboardBehavior/>
+                <keyboard:KeyboardBehavior UCFontSize="25"/>
             </i:Interaction.Behaviors>
         </TextBox>
         <PasswordBox Grid.Row="3" FontSize="25" VerticalAlignment="Center" Margin="20 0">

@@ -30,7 +30,7 @@ namespace KeyBoard.WPF.Behavior
         /// <summary>
         /// 小键盘背景色
         /// </summary>
-        public Brush? UCBackground { get; set; }
+        public Brush? UCBackground { get; set; } = Brushes.Green;
 
         public double UCFontSize { get; set; } = 15;
 
