@@ -48,16 +48,16 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 </i:Interaction.Behaviors>
 ```
 
-![全键盘](Image/全键盘.gif)
+![全键盘](./READMEIMG/image-20251204152050628.png)
 
 
 # 可选配置
 
-**设置键盘的底色**
+**设置键盘的底色，设置字体大小**
 
 ```xaml
 <i:Interaction.Behaviors>
-    <keyboard:KeyboardBehavior UCBackground="Red"/>
+    <keyboard:KeyboardBehavior UCBackground="Red" UCFontSize="30"/>
 </i:Interaction.Behaviors>
 ```
 

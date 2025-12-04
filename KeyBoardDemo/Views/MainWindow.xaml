@@ -32,7 +32,7 @@
         </TextBox>
         <PasswordBox Grid.Row="3" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:KeyboardBehavior UCBackground="Red"/>
+                <keyboard:KeyboardBehavior UCBackground="Red" UCFontSize="30"/>
             </i:Interaction.Behaviors>
         </PasswordBox>
         <Button Grid.Row="4" Content="按钮"  FontSize="25" VerticalAlignment="Center" Margin="20 0">
