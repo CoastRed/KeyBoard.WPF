@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" Text="Popup" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:NumericKeyboardBehavior UCFontSize="25"/>
+                <keyboard:NumericKeyboardBehavior/>
             </i:Interaction.Behaviors>
             <!--<i:Interaction.Behaviors>
                 <i:MouseDragElementBehavior />
@@ -27,17 +27,17 @@
 
         <TextBox Grid.Row="1" Text="数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:NumericKeyboardBehavior UCBackground="Blue"/>
+                <keyboard:NumericKeyboardBehavior Background="Blue"/>
             </i:Interaction.Behaviors>
         </TextBox>
         <TextBox Grid.Row="2" Text="全键盘" FontSize="30" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:KeyboardBehavior UCBackground="Yellow" UCFontSize="25"/>
+                <keyboard:KeyboardBehavior Background="Yellow" />
             </i:Interaction.Behaviors>
         </TextBox>
         <PasswordBox Grid.Row="3" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
-                <keyboard:KeyboardBehavior UCBackground="Red"/>
+                <keyboard:KeyboardBehavior Background="Red"/>
             </i:Interaction.Behaviors>
         </PasswordBox>
         <Button Grid.Row="4" Content="按钮"  FontSize="25" VerticalAlignment="Center" Margin="20 0">

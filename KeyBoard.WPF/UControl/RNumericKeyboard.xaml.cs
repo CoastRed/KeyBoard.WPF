@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,14 +18,10 @@ using KeyBoard.WPF.Helper;
 namespace KeyBoard.WPF.UControl
 {
     /// <summary>
-    /// NumericKeyboard.xaml 的交互逻辑
+    /// RNumericKeyboard.xaml 的交互逻辑
     /// </summary>
-    public partial class NumericKeyboard : UserControl, IKeyboardClosable
+    public partial class RNumericKeyboard : UserControl, IKeyboardClosable
     {
-
-        //[DllImport("User32.dll")]
-        //public static extern void keybd_event(byte bVK, byte bScan, Int32 dwFlags, int dwExtraInfo);
-
         public event EventHandler? Closed;
 
         private static Dictionary<string, byte> _keyNameToCodeMap = new Dictionary<string, byte>()
@@ -45,7 +40,7 @@ namespace KeyBoard.WPF.UControl
             {".", 110 },
         };
 
-        public NumericKeyboard()
+        public RNumericKeyboard()
         {
             InitializeComponent();
         }
@@ -57,7 +52,13 @@ namespace KeyBoard.WPF.UControl
             {
                 return;
             }
-            string? content = btn.Content == null ? string.Empty : btn.Content.ToString();
+            string? content = null;
+            if (btn.Content is not null && btn.Content is string)
+            {
+                content = btn.Content.ToString();
+            }
+            
+            content ??= btn.Tag == null ? string.Empty : btn.Tag.ToString();
             if (string.IsNullOrEmpty(content))
             {
                 return;
@@ -71,6 +72,5 @@ namespace KeyBoard.WPF.UControl
             //keybd_event(_keyNameToCodeMap[content], 0, 2, 0);
             KeyBoardHelper.SendKeyboard(_keyNameToCodeMap[content]);
         }
-
     }
 }

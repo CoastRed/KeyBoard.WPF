@@ -61,6 +61,15 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 </i:Interaction.Behaviors>
 ```
 
+| 属性                       | 说明                                                         | 默认值 |
+| -------------------------- | ------------------------------------------------------------ | ------ |
+| Background                 | 整体的背景色                                                 |        |
+| AlphabetKeyFontSize        | 全键盘中字母的字体大小                                       |        |
+| FunctionKeyFontSize        | 全键盘中功能键（Esc、Tab、Shift、Ctrl、Enter、Backspace等）字号 |        |
+| FKeyFontSize               | 全键盘中F1-F12键字号                                         |        |
+| NumberAndSymbolKeyFontSize | 全键盘中数字+符号键（0-9 + !@#$%^*()等）字号<br />数字键盘中数字的字号 |        |
+
+
 
 # 注意事项
 
@@ -74,3 +83,19 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 
 - 全键盘界面美化
 - 全键盘增加组合键的支持
+
+
+## 2.3.0
+
+- 重构了整个行为
+- 增加了一个数字小键盘和全键盘
+- 增加了键盘控制的静态类
+- 增加了键盘的底色和多种字体大小的设置
+- 对之前的版本有破坏性改动，请注意升级（UCBackground改为Background，UCFontSize分离出多个）
+
+![image-20260209170855028](./READMEIMG/image-20260209170855028.png)
+
+![image-20260209170912599](./READMEIMG/image-20260209170912599.png)
+
+
+

@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="KeyBoard.WPF.UControl.RNumericKeyboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
+             xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
+             mc:Ignorable="d" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+             d:DesignHeight="253" d:DesignWidth="525" Background="Transparent">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/KeyBoard.WPF;component/Style/BtnStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Margin" Value="4"/>
+                <Setter Property="BorderBrush" Value="#DCDCDC"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Foreground" Value="#CC000000"/>
+                <Setter Property="FontWeight" Value="Medium"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:KeyBoardAttach.NumberAndSymbolKeyFontSize)}" />
+            </Style>
+            <Style x:Key="btnNum" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}" TextElement.FontSize="{TemplateBinding FontSize}" TextElement.FontWeight="{TemplateBinding FontWeight}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <Style x:Key="btnFunc" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="FontSize" Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:KeyBoardAttach.FunctionKeyFontSize)}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.Foreground="{TemplateBinding Foreground}" TextElement.FontSize="{TemplateBinding FontSize}" TextElement.FontWeight="{TemplateBinding FontWeight}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
+    <Border Background="Transparent" BorderThickness="0">
+        <Border x:Name="bd" d:Background="#EEEEEE" Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl}, Path=(attach:KeyBoardAttach.Background)}" CornerRadius="10" BorderThickness="0">
+            <Grid Margin="7" ButtonBase.Click="Grid_Click" Focusable="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="1" Content="4" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="1" Content="5" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="1" Content="6" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
+                <Button FontSize="32" Grid.Column="2" Grid.Row="3" Content="." Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Tag="←" Style="{StaticResource btnFunc}">
+                    <Image Width="40" Height="40" Source="/KeyBoard.WPF;component/Assets/Images/删除.png"/>
+                </Button>
+                <Button d:FontSize="26" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter"
+                        Foreground="White" Background="#266FE8"
+                        Style="{StaticResource btnFunc}" />
+            </Grid>
+        </Border>
+    </Border>
+</UserControl>

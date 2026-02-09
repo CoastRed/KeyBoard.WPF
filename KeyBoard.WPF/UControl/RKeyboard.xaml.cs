@@ -1,9 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,24 +20,19 @@ using KeyBoard.WPF.Helper;
 namespace KeyBoard.WPF.UControl
 {
     /// <summary>
-    /// Keyboard.xaml 的交互逻辑
+    /// RKeyboard.xaml 的交互逻辑
     /// </summary>
-    public partial class Keyboard : UserControl, IKeyboardClosable
+    public partial class RKeyboard : UserControl, IKeyboardClosable
     {
+
+        public event EventHandler? Closed;
 
         private HashSet<string> _isPressedKey = new HashSet<string>();
 
         /// <summary>
-        /// 键盘关闭事件
-        /// </summary>
-        public event EventHandler? Closed;
-
-        
-
-        /// <summary>
         /// 初始化
         /// </summary>
-        public Keyboard()
+        public RKeyboard()
         {
             InitializeComponent();
         }
@@ -117,5 +111,7 @@ namespace KeyBoard.WPF.UControl
         {
             ReleaseKey();
         }
+
+
     }
 }
