@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace KeyBoard.WPF.Common
 {
-    public class RelayCommand : ICommand
+    internal class RelayCommand : ICommand
     {
         private readonly Action _execute;
         private readonly Func<bool>? _canExecute;
@@ -29,7 +29,7 @@ namespace KeyBoard.WPF.Common
         public void Execute(object? parameter) => _execute();
     }
 
-    public class RelayCommand<T> : ICommand
+    internal class RelayCommand<T> : ICommand
     {
         private readonly Action<T> _execute;
         private readonly Predicate<T>? _canExecute;

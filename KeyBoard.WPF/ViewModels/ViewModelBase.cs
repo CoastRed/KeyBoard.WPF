@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KeyBoard.WPF.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    internal class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

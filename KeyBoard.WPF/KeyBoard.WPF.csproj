@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows;net10.0-windows;net462</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net7.0-windows;net8.0-windows;net9.0-windows;net10.0-windows;net462;net48;net481</TargetFrameworks>
 		<LangVersion>preview</LangVersion>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>2.3.0</Version>
+		<Version>2.3.1</Version>
 		<Authors>CoastRed</Authors>
 		<PackageProjectUrl></PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/CoastRed/KeyBoard.WPF</RepositoryUrl>
 		<Description>一款用于触摸屏输入的屏幕软键盘</Description>
 		<PackageIcon></PackageIcon>
-		<PackageReleaseNotes>重构整个行为，增加多种字号设置</PackageReleaseNotes>
+		<PackageReleaseNotes>增加对net481的支持</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

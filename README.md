@@ -61,13 +61,13 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 </i:Interaction.Behaviors>
 ```
 
-| 属性                       | 说明                                                         | 默认值 |
-| -------------------------- | ------------------------------------------------------------ | ------ |
-| Background                 | 整体的背景色                                                 |        |
-| AlphabetKeyFontSize        | 全键盘中字母的字体大小                                       |        |
-| FunctionKeyFontSize        | 全键盘中功能键（Esc、Tab、Shift、Ctrl、Enter、Backspace等）字号 |        |
-| FKeyFontSize               | 全键盘中F1-F12键字号                                         |        |
-| NumberAndSymbolKeyFontSize | 全键盘中数字+符号键（0-9 + !@#$%^*()等）字号<br />数字键盘中数字的字号 |        |
+| 属性                       | 说明                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| Background                 | 整体的背景色                                                 |
+| AlphabetKeyFontSize        | 全键盘中字母的字体大小                                       |
+| FunctionKeyFontSize        | 全键盘中功能键（Esc、Tab、Shift、Ctrl、Enter、Backspace等）字号 |
+| FKeyFontSize               | 全键盘中F1-F12键字号                                         |
+| NumberAndSymbolKeyFontSize | 全键盘中数字+符号键（0-9 + !@#$%^*()等）字号<br />数字键盘中数字的字号 |
 
 
 

@@ -8,7 +8,7 @@ using KeyBoard.WPF.Helper;
 
 namespace KeyBoard.WPF.ViewModels
 {
-    public class NumericKeyboardViewModel : ViewModelBase
+    internal class NumericKeyboardViewModel : ViewModelBase
     {
         public RelayCommand<string> ButtonCommand { get; }
 
