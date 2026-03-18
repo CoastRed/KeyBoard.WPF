@@ -16,6 +16,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" Text="默认数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
             <i:Interaction.Behaviors>
@@ -53,5 +54,16 @@
                 <keyboard:RKeyboardBehavior Width="1280" Height="400"/>
             </i:Interaction.Behaviors>
         </TextBox>
+
+        <DockPanel Grid.Row="7" VerticalAlignment="Stretch" LastChildFill="True">
+
+            <Button DockPanel.Dock="Right" Content="按钮" Margin="10" Width="200" FontSize="30" VerticalAlignment="Stretch"/>
+            <TextBox Margin="20 5" FontSize="30" VerticalAlignment="Stretch">
+                <i:Interaction.Behaviors>
+                    <keyboard:RKeyboardBehavior/>
+                </i:Interaction.Behaviors>
+            </TextBox>
+
+        </DockPanel>
     </Grid>
 </Window>

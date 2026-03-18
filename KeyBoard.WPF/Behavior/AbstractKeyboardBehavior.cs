@@ -118,7 +118,15 @@ namespace KeyBoard.WPF.Behavior
 
             if (this.Panel.Children.Contains(this.Popup) is false)
             {
-                this.Panel.Children.Add(Popup);
+                if(this.Panel is DockPanel)
+                {
+                    // DockPanel需要特殊处理，放在最前面
+                    this.Panel.Children.Insert(0, Popup);
+                }
+                else
+                {
+                    this.Panel.Children.Add(Popup);
+                }
             }
             Popup.IsOpen = true;
         }
