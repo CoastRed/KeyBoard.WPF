@@ -97,5 +97,8 @@ xmlns:keyboard="clr-namespace:KeyBoard.WPF.Behavior;assembly=KeyBoard.WPF"
 
 ![image-20260209170912599](./READMEIMG/image-20260209170912599.png)
 
+## 2.3.2
 
+- 重构KeyBoardHelper，使用WPF中的Key枚举类，键盘界面的Tag属性绑定枚举，再把WPF的Key枚举在后台转为虚拟键码
+- 修复Enter按下无法触发输入框事件的问题
 
