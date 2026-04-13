@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
+             xmlns:input="clr-namespace:System.Windows.Input;assembly=WindowsBase"
              mc:Ignorable="d" Focusable="False" Loaded="UserControl_Loaded" Unloaded="UserControl_Unloaded"
              d:DesignHeight="400" d:DesignWidth="1280" >
     <UserControl.Resources>
@@ -72,10 +73,75 @@
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="5.3">
                             <UniformGrid Rows="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <TextBlock Text="{TemplateBinding Tag}" FontSize="{TemplateBinding FontSize}" Background="Transparent" Foreground="{TemplateBinding Foreground}"/>
+                                <TextBlock Name="tb1" FontSize="{TemplateBinding FontSize}" Background="Transparent" Foreground="{TemplateBinding Foreground}"/>
                                 <TextBlock Text="{TemplateBinding Content}" FontSize="{TemplateBinding FontSize}" Background="Transparent" Foreground="{TemplateBinding Foreground}"/>
                             </UniformGrid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Content" Value="`">
+                                <Setter TargetName="tb1" Property="Text" Value="~"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="1">
+                                <Setter TargetName="tb1" Property="Text" Value="!"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="2">
+                                <Setter TargetName="tb1" Property="Text" Value="@"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="3">
+                                <Setter TargetName="tb1" Property="Text" Value="#"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="4">
+                                <Setter TargetName="tb1" Property="Text" Value="$"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="5">
+                                <Setter TargetName="tb1" Property="Text" Value="%"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="6">
+                                <Setter TargetName="tb1" Property="Text" Value="^"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="7">
+                                <Setter TargetName="tb1" Property="Text" Value="&amp;"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="8">
+                                <Setter TargetName="tb1" Property="Text" Value="*"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="9">
+                                <Setter TargetName="tb1" Property="Text" Value="("/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="0">
+                                <Setter TargetName="tb1" Property="Text" Value=")"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="-">
+                                <Setter TargetName="tb1" Property="Text" Value="_"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="=">
+                                <Setter TargetName="tb1" Property="Text" Value="+"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="[">
+                                <Setter TargetName="tb1" Property="Text" Value="{}{"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="]">
+                                <Setter TargetName="tb1" Property="Text" Value="{}}"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="\">
+                                <Setter TargetName="tb1" Property="Text" Value="|"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value=";">
+                                <Setter TargetName="tb1" Property="Text" Value=":"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="'">
+                                <Setter TargetName="tb1" Property="Text" Value="&quot;"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value=",">
+                                <Setter TargetName="tb1" Property="Text" Value="&lt;"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value=".">
+                                <Setter TargetName="tb1" Property="Text" Value="&gt;"/>
+                            </Trigger>
+                            <Trigger Property="Content" Value="/">
+                                <Setter TargetName="tb1" Property="Text" Value="?"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -168,21 +234,21 @@
             </Border>
 
             <UniformGrid Grid.Row="1" Rows="1" Columns="15">
-                <Button d:FontSize="16" Content="Esc" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F1" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F2" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F3" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F4" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F5" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F6" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F7" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F8" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F9" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F10" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F11" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="F12" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="INS" Style="{StaticResource FKeyButtonStyle}"/>
-                <Button d:FontSize="16" Content="Del" Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="Esc" Tag="{x:Static input:Key.Escape}" Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F1"  Tag="{x:Static input:Key.F1}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F2"  Tag="{x:Static input:Key.F2}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F3"  Tag="{x:Static input:Key.F3}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F4"  Tag="{x:Static input:Key.F4}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F5"  Tag="{x:Static input:Key.F5}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F6"  Tag="{x:Static input:Key.F6}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F7"  Tag="{x:Static input:Key.F7}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F8"  Tag="{x:Static input:Key.F8}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F9"  Tag="{x:Static input:Key.F9}"     Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F10" Tag="{x:Static input:Key.F10}"    Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F11" Tag="{x:Static input:Key.F11}"    Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="F12" Tag="{x:Static input:Key.F12}"    Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="INS" Tag="{x:Static input:Key.Insert}" Style="{StaticResource FKeyButtonStyle}"/>
+                <Button d:FontSize="16" Content="Del" Tag="{x:Static input:Key.Delete}" Style="{StaticResource FKeyButtonStyle}"/>
             </UniformGrid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -207,21 +273,21 @@
                         <TextBlock Text="`" FontSize="16" FontWeight="Bold"/>
                     </StackPanel>
                 </Button>
-                <Button Grid.Column="0" Content="`" Tag="~" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="1" Content="1" Tag="!" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="2" Content="2" Tag="@" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="3" Content="3" Tag="#" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="4" Content="4" Tag="$" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="5" Content="5" Tag="%" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="6" Content="6" Tag="^" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="7" Content="7" Tag="&amp;" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="8" Content="8" Tag="*" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="9" Content="9" Tag="(" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="10" Content="0" Tag=")" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="11" Content="-" Tag="_" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="12" Content="=" Tag="+" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="0" Content="`"  Tag="{x:Static input:Key.OemTilde}"  Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="1" Content="1"  Tag="{x:Static input:Key.D1}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="2" Content="2"  Tag="{x:Static input:Key.D2}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="3" Content="3"  Tag="{x:Static input:Key.D3}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="4" Content="4"  Tag="{x:Static input:Key.D4}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="5" Content="5"  Tag="{x:Static input:Key.D5}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="6" Content="6"  Tag="{x:Static input:Key.D6}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="7" Content="7"  Tag="{x:Static input:Key.D7}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="8" Content="8"  Tag="{x:Static input:Key.D8}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="9" Content="9"  Tag="{x:Static input:Key.D9}"        Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="10" Content="0" Tag="{x:Static input:Key.D0}"       Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="11" Content="-" Tag="{x:Static input:Key.OemMinus}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="12" Content="=" Tag="{x:Static input:Key.OemPlus}"  Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
 
-                <Button Grid.Column="13" Content="Backspace" HorizontalContentAlignment="Right" Padding="0 0 25 0" Style="{StaticResource FunctionKeyButtonStyle}"/>
+                <Button Grid.Column="13" Content="Backspace" Tag="{x:Static input:Key.Back}" HorizontalContentAlignment="Right" Padding="0 0 25 0" Style="{StaticResource FunctionKeyButtonStyle}"/>
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
@@ -240,20 +306,20 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="1.54*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0"  d:FontSize="24" Content="Tab"/>
-                <Button Grid.Column="1"  d:FontSize="24" Content="Q" />
-                <Button Grid.Column="2"  d:FontSize="24" Content="W" />
-                <Button Grid.Column="3"  d:FontSize="24" Content="E" />
-                <Button Grid.Column="4"  d:FontSize="24" Content="R" />
-                <Button Grid.Column="5"  d:FontSize="24" Content="T" />
-                <Button Grid.Column="6"  d:FontSize="24" Content="Y" />
-                <Button Grid.Column="7"  d:FontSize="24" Content="U" />
-                <Button Grid.Column="8"  d:FontSize="24" Content="I" />
-                <Button Grid.Column="9"  d:FontSize="24" Content="O" />
-                <Button Grid.Column="10" d:FontSize="24" Content="P" />
-                <Button Grid.Column="11" Content="[" Tag="{}{" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="12" Content="]" Tag="{}}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="13" Content="\" Tag="|" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="0"  d:FontSize="24" Content="Tab" Tag="{x:Static input:Key.Tab}"/>
+                <Button Grid.Column="1"  d:FontSize="24" Content="Q"   Tag="{x:Static input:Key.Q}"  />
+                <Button Grid.Column="2"  d:FontSize="24" Content="W"   Tag="{x:Static input:Key.W}"  />
+                <Button Grid.Column="3"  d:FontSize="24" Content="E"   Tag="{x:Static input:Key.E}"  />
+                <Button Grid.Column="4"  d:FontSize="24" Content="R"   Tag="{x:Static input:Key.R}"  />
+                <Button Grid.Column="5"  d:FontSize="24" Content="T"   Tag="{x:Static input:Key.T}"  />
+                <Button Grid.Column="6"  d:FontSize="24" Content="Y"   Tag="{x:Static input:Key.Y}"  />
+                <Button Grid.Column="7"  d:FontSize="24" Content="U"   Tag="{x:Static input:Key.U}"  />
+                <Button Grid.Column="8"  d:FontSize="24" Content="I"   Tag="{x:Static input:Key.I}"  />
+                <Button Grid.Column="9"  d:FontSize="24" Content="O"   Tag="{x:Static input:Key.O}"  />
+                <Button Grid.Column="10" d:FontSize="24" Content="P"   Tag="{x:Static input:Key.P}"  />
+                <Button Grid.Column="11" Content="[" Tag="{x:Static input:Key.OemOpenBrackets}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="12" Content="]" Tag="{x:Static input:Key.OemCloseBrackets}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="13" Content="\" Tag="{x:Static input:Key.OemBackslash}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
             </Grid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
@@ -271,19 +337,19 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2.1*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton Grid.Column="0" x:Name="tgCapsLock" Content="CAPS" Style="{StaticResource ToggleKeyStyle}"/>
-                <Button Grid.Column="1" Content="A" />
-                <Button Grid.Column="2" Content="S" />
-                <Button Grid.Column="3" Content="D" />
-                <Button Grid.Column="4" Content="F" />
-                <Button Grid.Column="5" Content="G" />
-                <Button Grid.Column="6" Content="H" />
-                <Button Grid.Column="7" Content="J" />
-                <Button Grid.Column="8" Content="K" />
-                <Button Grid.Column="9" Content="L" />
-                <Button Grid.Column="10" Content=";" Tag=":" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="11" Content="'" Tag="&quot;" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="12" Content="Enter" Style="{StaticResource FunctionKeyButtonStyle}"/>
+                <ToggleButton Grid.Column="0" x:Name="tgCapsLock" Content="CAPS" Tag="{x:Static input:Key.CapsLock}" Style="{StaticResource ToggleKeyStyle}"/>
+                <Button Grid.Column="1" Content="A" Tag="{x:Static input:Key.A}"/>
+                <Button Grid.Column="2" Content="S" Tag="{x:Static input:Key.S}"/>
+                <Button Grid.Column="3" Content="D" Tag="{x:Static input:Key.D}"/>
+                <Button Grid.Column="4" Content="F" Tag="{x:Static input:Key.F}"/>
+                <Button Grid.Column="5" Content="G" Tag="{x:Static input:Key.G}"/>
+                <Button Grid.Column="6" Content="H" Tag="{x:Static input:Key.H}"/>
+                <Button Grid.Column="7" Content="J" Tag="{x:Static input:Key.J}"/>
+                <Button Grid.Column="8" Content="K" Tag="{x:Static input:Key.K}"/>
+                <Button Grid.Column="9" Content="L" Tag="{x:Static input:Key.L}"/>
+                <Button Grid.Column="10" Content=";" Tag="{x:Static input:Key.OemSemicolon}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="11" Content="'" Tag="{x:Static input:Key.OemQuotes}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="12" Content="Enter" Tag="{x:Static input:Key.Enter}" Style="{StaticResource FunctionKeyButtonStyle}"/>
             </Grid>
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
@@ -300,18 +366,18 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2.65*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="tgShift1" Grid.Column="0" Content="Shift" Style="{StaticResource ToggleKeyStyle}"/>
-                <Button Grid.Column="1" Content="Z" />
-                <Button Grid.Column="2" Content="X" />
-                <Button Grid.Column="3" Content="C" />
-                <Button Grid.Column="4" Content="V" />
-                <Button Grid.Column="5" Content="B" />
-                <Button Grid.Column="6" Content="N" />
-                <Button Grid.Column="7" Content="M" />
-                <Button Grid.Column="8" Content="," Tag="&lt;" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="9" Content="." Tag="&gt;" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <Button Grid.Column="10" Content="/" Tag="?" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
-                <ToggleButton x:Name="tgShift2" Grid.Column="11" Content="Shift" IsChecked="{Binding ElementName=tgShift1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+                <ToggleButton x:Name="tgShift1" Grid.Column="0" Content="Shift" Tag="{x:Static input:Key.LeftShift}" Style="{StaticResource ToggleKeyStyle}"/>
+                <Button Grid.Column="1" Content="Z" Tag="{x:Static input:Key.Z}"/>
+                <Button Grid.Column="2" Content="X" Tag="{x:Static input:Key.X}"/>
+                <Button Grid.Column="3" Content="C" Tag="{x:Static input:Key.C}"/>
+                <Button Grid.Column="4" Content="V" Tag="{x:Static input:Key.V}"/>
+                <Button Grid.Column="5" Content="B" Tag="{x:Static input:Key.B}"/>
+                <Button Grid.Column="6" Content="N" Tag="{x:Static input:Key.N}"/>
+                <Button Grid.Column="7" Content="M" Tag="{x:Static input:Key.M}"/>
+                <Button Grid.Column="8" Content="," Tag="{x:Static input:Key.OemComma}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="9" Content="." Tag="{x:Static input:Key.OemPeriod}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <Button Grid.Column="10" Content="/" Tag="{x:Static input:Key.OemQuestion}" Style="{StaticResource NumberAndSymbolKeyButtonStyle}"/>
+                <ToggleButton x:Name="tgShift2" Grid.Column="11" Content="Shift" Tag="{x:Static input:Key.LeftShift}" IsChecked="{Binding ElementName=tgShift1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
             </Grid>
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
@@ -324,14 +390,14 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton x:Name="tgCtrl1" Grid.Column="0" Content="Ctrl" Style="{StaticResource ToggleKeyStyle}"/>
-                <Button Grid.Column="1" Content="Win" Style="{StaticResource FunctionKeyButtonStyle}"/>
-                <ToggleButton x:Name="tgAlt1" Grid.Column="2" Content="Alt" Style="{StaticResource ToggleKeyStyle}"/>
-                <Button Grid.Column="3" Content="Space"  FontSize="16"/>
-                <ToggleButton x:Name="tgAlt2" Grid.Column="4" Content="Alt" IsChecked="{Binding ElementName=tgAlt1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+                <ToggleButton x:Name="tgCtrl1" Grid.Column="0" Content="Ctrl" Tag="{x:Static input:Key.LeftCtrl}" Style="{StaticResource ToggleKeyStyle}"/>
+                <Button Grid.Column="1" Content="Win" Tag="{x:Static input:Key.LWin}" Style="{StaticResource FunctionKeyButtonStyle}"/>
+                <ToggleButton x:Name="tgAlt1" Grid.Column="2" Content="Alt" Tag="{x:Static input:Key.LeftAlt}" Style="{StaticResource ToggleKeyStyle}"/>
+                <Button Grid.Column="3" Content="Space"  FontSize="16" Tag="{x:Static input:Key.Space}"/>
+                <ToggleButton x:Name="tgAlt2" Grid.Column="4" Content="Alt" Tag="{x:Static input:Key.LeftAlt}" IsChecked="{Binding ElementName=tgAlt1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
                 <ToggleButton Grid.Column="5" Content="Fn" Style="{StaticResource ToggleKeyStyle}"/>
                 <Button Grid.Column="6" Content="☰" Style="{StaticResource FunctionKeyButtonStyle}"/>
-                <ToggleButton x:Name="tgCtrl2" Grid.Column="7" Content="Ctrl" IsChecked="{Binding ElementName=tgCtrl1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
+                <ToggleButton x:Name="tgCtrl2" Grid.Column="7" Content="Ctrl" Tag="{x:Static input:Key.LeftCtrl}" IsChecked="{Binding ElementName=tgCtrl1, Path=IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ToggleKeyStyle}"/>
             </Grid>
         </Grid>
     </Border>

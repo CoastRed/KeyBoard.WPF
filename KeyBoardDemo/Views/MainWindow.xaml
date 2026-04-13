@@ -24,12 +24,12 @@
             </i:Interaction.Behaviors>
         </TextBox>
 
-        <TextBox Grid.Row="1" Text="数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+        <TextBox Grid.Row="1" Text="数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0" KeyDown="TextBox_KeyDown">
             <i:Interaction.Behaviors>
                 <keyboard:NumericKeyboardBehavior Background="Blue" />
             </i:Interaction.Behaviors>
         </TextBox>
-        <TextBox Grid.Row="2" Text="全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+        <TextBox Grid.Row="2" Text="全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0" KeyDown="TextBox_KeyDown">
             <i:Interaction.Behaviors>
                 <keyboard:KeyboardBehavior/>
             </i:Interaction.Behaviors>
@@ -44,12 +44,12 @@
                 <keyboard:KeyboardBehavior/>
             </i:Interaction.Behaviors>
         </Button>
-        <TextBox Grid.Row="5" Text="R数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+        <TextBox Grid.Row="5" Text="R数字键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0" KeyDown="TextBox_KeyDown">
             <i:Interaction.Behaviors>
                 <keyboard:RNumericKeyboardBehavior Background="#EEEEEE"/>
             </i:Interaction.Behaviors>
         </TextBox>
-        <TextBox Grid.Row="6" Text="R全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0">
+        <TextBox Grid.Row="6" Text="R全键盘" FontSize="25" VerticalAlignment="Center" Margin="20 0" KeyDown="TextBox_KeyDown">
             <i:Interaction.Behaviors>
                 <keyboard:RKeyboardBehavior Width="1280" Height="400"/>
             </i:Interaction.Behaviors>

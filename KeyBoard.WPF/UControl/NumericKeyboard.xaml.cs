@@ -23,27 +23,7 @@ namespace KeyBoard.WPF.UControl
     /// </summary>
     public partial class NumericKeyboard : UserControl, IKeyboardClosable
     {
-
-        //[DllImport("User32.dll")]
-        //public static extern void keybd_event(byte bVK, byte bScan, Int32 dwFlags, int dwExtraInfo);
-
         public event EventHandler? Closed;
-
-        private static Dictionary<string, byte> _keyNameToCodeMap = new Dictionary<string, byte>()
-        {
-            {"0", 96 },
-            {"1", 97 },
-            {"2", 98 },
-            {"3", 99 },
-            {"4", 100 },
-            {"5", 101 },
-            {"6", 102 },
-            {"7", 103 },
-            {"8", 104 },
-            {"9", 105 },
-            {"←", 8 },
-            {".", 110 },
-        };
 
         public NumericKeyboard()
         {
@@ -57,19 +37,18 @@ namespace KeyBoard.WPF.UControl
             {
                 return;
             }
-            string? content = btn.Content == null ? string.Empty : btn.Content.ToString();
-            if (string.IsNullOrEmpty(content))
+
+            if (btn.Tag is not null && btn.Tag is Key key)
             {
-                return;
+
+                KeyBoardHelper.SendKeyboard(key);
+                if (key == Key.Separator)
+                {
+                    KeyBoardHelper.WpfKeyboardPress(key);
+                    this.Closed?.Invoke(this, new EventArgs());
+                    return;
+                }
             }
-            if (content == "确认" || content == "Enter")
-            {
-                this.Closed?.Invoke(this, new EventArgs());
-                return;
-            }
-            //keybd_event(_keyNameToCodeMap[content], 0, 0, 0);
-            //keybd_event(_keyNameToCodeMap[content], 0, 2, 0);
-            KeyBoardHelper.SendKeyboard(_keyNameToCodeMap[content]);
         }
 
     }

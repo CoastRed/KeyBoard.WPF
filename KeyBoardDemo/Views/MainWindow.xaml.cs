@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 
 namespace KeyBoardDemo.Views
 {
@@ -10,6 +11,11 @@ namespace KeyBoardDemo.Views
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            Debug.WriteLine($"KeyDown: {e.Key}");
         }
     }
 }

@@ -26,14 +26,9 @@ namespace KeyBoard.WPF.UControl
     public partial class Keyboard : UserControl, IKeyboardClosable
     {
 
-        private HashSet<string> _isPressedKey = new HashSet<string>();
-
-        /// <summary>
-        /// 键盘关闭事件
-        /// </summary>
         public event EventHandler? Closed;
 
-        
+        private readonly HashSet<Key> _isPressedKeys = new HashSet<Key>();
 
         /// <summary>
         /// 初始化
@@ -46,7 +41,7 @@ namespace KeyBoard.WPF.UControl
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.tgCapsLock.IsChecked = KeyBoardHelper.CapsLock;
-            this._isPressedKey.Clear();
+            this._isPressedKeys.Clear();
         }
 
         public void UpdateKeyboardState()
@@ -63,51 +58,50 @@ namespace KeyBoard.WPF.UControl
             {
                 return;
             }
-            string? content = btn.Content?.ToString() ?? string.Empty;
-            if (string.IsNullOrWhiteSpace(content))
+            if (btn.Tag is not null && btn.Tag is Key key)
             {
-                return;
-            }
 
-            if (content == "Enter")
-            {
-                KeyBoardHelper.SendKeyboard(content);
-                this.Closed?.Invoke(this, EventArgs.Empty);
-                return;
-            }
-
-            else if (_isPressedKey.Contains(content))
-            {
-                KeyBoardHelper.SendKeyboard(content);
-                _isPressedKey.Remove(content);
-                return;
-            }
-
-            if (content == "Shift" || content == "Ctrl" || content == "Alt")
-            {
-                _isPressedKey.Add(content!);
-                return;
-            }
-            else
-            {
-                foreach (var key in _isPressedKey)
+                if (key == Key.Enter)
                 {
-                    KeyBoardHelper.SendKeyboardDown(key);
+                    KeyBoardHelper.SendKeyboard(key);
+                    KeyBoardHelper.WpfKeyboardPress(key);
+                    this.Closed?.Invoke(this, EventArgs.Empty);
+                    return;
                 }
-                KeyBoardHelper.SendKeyboard(content);
-                foreach (var key in _isPressedKey)
+
+                else if (_isPressedKeys.Contains(key))
                 {
-                    KeyBoardHelper.SendKeyboardUp(key);
+                    KeyBoardHelper.SendKeyboard(key);
+                    _isPressedKeys.Remove(key);
+                    return;
                 }
-                _isPressedKey.Clear();
-                this.UpdateKeyboardState();
-                return;
+
+                if (key == Key.LeftShift || key == Key.RightShift || key == Key.LeftCtrl || key == Key.RightCtrl || key == Key.LeftAlt || key == Key.RightAlt)
+                {
+                    _isPressedKeys.Add(key);
+                    return;
+                }
+                else
+                {
+                    foreach (var pressedKey in _isPressedKeys)
+                    {
+                        KeyBoardHelper.SendKeyboardDown(pressedKey);
+                    }
+                    KeyBoardHelper.SendKeyboard(key);
+                    foreach (var pressedKey in _isPressedKeys)
+                    {
+                        KeyBoardHelper.SendKeyboardUp(pressedKey);
+                    }
+                    _isPressedKeys.Clear();
+                    this.UpdateKeyboardState();
+                    return;
+                }
             }
         }
 
         private void ReleaseKey()
         {
-            _isPressedKey.Clear();
+            _isPressedKeys.Clear();
             this.tgAlt1.IsChecked = false;
             this.tgCtrl1.IsChecked = false;
             this.tgShift1.IsChecked = false;

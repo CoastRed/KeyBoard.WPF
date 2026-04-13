@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
+             xmlns:input="clr-namespace:System.Windows.Input;assembly=WindowsBase"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300" Background="Transparent"
              >
@@ -112,19 +113,19 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Margin="2" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="1" Content="4" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="1" Content="5" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="1" Content="6" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="." FontSize="35" Style="{StaticResource btnNum}"/>
-                <Button Margin="2" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="←" Style="{StaticResource btnFunc}" />
-                <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter" Style="{StaticResource btnFunc}" />
+                <Button Margin="2" Grid.Column="0" Grid.Row="0" Content="1" Tag="{x:Static input:Key.NumPad1}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="1" Grid.Row="0" Content="2" Tag="{x:Static input:Key.NumPad2}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="2" Grid.Row="0" Content="3" Tag="{x:Static input:Key.NumPad3}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="0" Grid.Row="1" Content="4" Tag="{x:Static input:Key.NumPad4}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="1" Grid.Row="1" Content="5" Tag="{x:Static input:Key.NumPad5}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="2" Grid.Row="1" Content="6" Tag="{x:Static input:Key.NumPad6}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="0" Grid.Row="2" Content="7" Tag="{x:Static input:Key.NumPad7}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="1" Grid.Row="2" Content="8" Tag="{x:Static input:Key.NumPad8}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="2" Grid.Row="2" Content="9" Tag="{x:Static input:Key.NumPad9}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Tag="{x:Static input:Key.NumPad0}" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="2" Grid.Row="3" Content="." Tag="{x:Static input:Key.Decimal}" FontSize="35" Style="{StaticResource btnNum}"/>
+                <Button Margin="2" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Content="←" Tag="{x:Static input:Key.Back}" Style="{StaticResource btnFunc}" />
+                <Button Margin="2" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter" Tag="{x:Static input:Key.Separator}" Style="{StaticResource btnFunc}" />
                 <UniformGrid Visibility="Collapsed" Columns="4" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
                     <Button Margin="2" Content="←" Style="{StaticResource btnFunc}" />
                     <Button Margin="2"  Content="0" Style="{StaticResource btnNum}"/>

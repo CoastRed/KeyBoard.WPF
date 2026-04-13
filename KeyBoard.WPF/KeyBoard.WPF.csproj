@@ -7,14 +7,14 @@
 		<UseWPF>true</UseWPF>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>2.3.1.1</Version>
+		<Version>2.3.2.0</Version>
 		<Authors>CoastRed</Authors>
 		<PackageProjectUrl></PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/CoastRed/KeyBoard.WPF</RepositoryUrl>
 		<Description>一款用于触摸屏输入的屏幕软键盘</Description>
 		<PackageIcon></PackageIcon>
-		<PackageReleaseNotes>修复外围为DockPanel控件时导致输入控件异常的问题</PackageReleaseNotes>
+		<PackageReleaseNotes>重构KeyBoardHelper，使用WPF中的Key枚举类，修复Enter按下无法触发输入框事件的问题</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

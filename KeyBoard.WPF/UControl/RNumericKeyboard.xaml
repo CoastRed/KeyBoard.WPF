@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KeyBoard.WPF.UControl"
              xmlns:attach="clr-namespace:KeyBoard.WPF.Controls.Attach"
+             xmlns:input="clr-namespace:System.Windows.Input;assembly=WindowsBase"
              mc:Ignorable="d" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
              d:DesignHeight="253" d:DesignWidth="525" Background="Transparent">
     <UserControl.Resources>
@@ -65,22 +66,22 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button d:FontSize="26" Grid.Column="0" Grid.Row="0" Content="1" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="1" Grid.Row="0" Content="2" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="2" Grid.Row="0" Content="3" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="0" Grid.Row="1" Content="4" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="1" Grid.Row="1" Content="5" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="2" Grid.Row="1" Content="6" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="0" Grid.Row="2" Content="7" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="1" Grid.Row="2" Content="8" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="2" Grid.Row="2" Content="9" Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Style="{StaticResource btnNum}"/>
-                <Button FontSize="32" Grid.Column="2" Grid.Row="3" Content="." Style="{StaticResource btnNum}"/>
-                <Button d:FontSize="26" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Tag="←" Style="{StaticResource btnFunc}">
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="0" Content="1" Tag="{x:Static input:Key.NumPad1}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="0" Content="2" Tag="{x:Static input:Key.NumPad2}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="0" Content="3" Tag="{x:Static input:Key.NumPad3}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="1" Content="4" Tag="{x:Static input:Key.NumPad4}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="1" Content="5" Tag="{x:Static input:Key.NumPad5}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="1" Content="6" Tag="{x:Static input:Key.NumPad6}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="2" Content="7" Tag="{x:Static input:Key.NumPad7}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="1" Grid.Row="2" Content="8" Tag="{x:Static input:Key.NumPad8}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="2" Grid.Row="2" Content="9" Tag="{x:Static input:Key.NumPad9}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="0" Tag="{x:Static input:Key.NumPad0}" Style="{StaticResource btnNum}"/>
+                <Button FontSize="32" Grid.Column="2" Grid.Row="3" Content="." Tag="{x:Static input:Key.Decimal}" Style="{StaticResource btnNum}"/>
+                <Button d:FontSize="26" Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" Tag="{x:Static input:Key.Back}" Style="{StaticResource btnFunc}">
                     <Image Width="40" Height="40" Source="/KeyBoard.WPF;component/Assets/Images/删除.png"/>
                 </Button>
                 <Button d:FontSize="26" Grid.Column="3" Grid.Row="2" Grid.RowSpan="2" Content="Enter"
-                        Foreground="White" Background="#266FE8"
+                        Foreground="White" Background="#266FE8" Tag="{x:Static input:Key.Separator}"
                         Style="{StaticResource btnFunc}" />
             </Grid>
         </Border>
